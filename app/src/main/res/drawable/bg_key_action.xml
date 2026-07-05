@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Background for action keys: Space bar, Enter.
+    Uses ledger-blue for light theme, brass for dark theme.
+    In this file we target light theme; dark theme override goes in
+    res/drawable-night/ (next file).
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Pressed -->
+    <item android:state_pressed="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/ledger_blue_light"/>
+                    <corners android:radius="8dp"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <!-- Normal -->
+    <item>
+        <layer-list>
+            <!-- Shadow -->
+            <item android:top="2dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/ledger_blue_dark"/>
+                    <corners android:radius="8dp"/>
+                </shape>
+            </item>
+            <!-- Surface -->
+            <item android:bottom="2dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/ledger_blue"/>
+                    <corners android:radius="8dp"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+</selector>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Adaptive icon foreground layer.
+    Shows the stylised "ቀ" Ethiopic character with a keyboard hint bar.
+    Works as adaptive icon on Android 8+ and as regular drawable below.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Outer rounded rectangle (keyboard body) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M18,28 Q18,20 26,20 L82,20 Q90,20 90,28 L90,80 Q90,88 82,88 L26,88 Q18,88 18,80 Z"/>
+
+    <!-- Three key-row hint lines — gives keyboard silhouette feel -->
+    <path
+        android:fillColor="#1A3A5C"
+        android:strokeWidth="0"
+        android:pathData="M26,40 L82,40 Q84,40 84,42 L84,44 Q84,46 82,46 L26,46 Q24,46 24,44 L24,42 Q24,40 26,40 Z"/>
+    <path
+        android:fillColor="#1A3A5C"
+        android:pathData="M26,52 L82,52 Q84,52 84,54 L84,56 Q84,58 82,58 L26,58 Q24,58 24,56 L24,54 Q24,52 26,52 Z"/>
+    <path
+        android:fillColor="#C8962A"
+        android:pathData="M26,64 L82,64 Q84,64 84,66 L84,68 Q84,70 82,70 L26,70 Q24,70 24,68 L24,66 Q24,64 26,64 Z"/>
+
+    <!-- Central Ethiopic character "ቀ" represented as decorative paths -->
+    <!-- Top horizontal bar -->
+    <path
+        android:fillColor="#1A3A5C"
+        android:pathData="M42,28 L66,28 Q68,28 68,30 L68,32 Q68,34 66,34 L42,34 Q40,34 40,32 L40,30 Q40,28 42,28 Z"/>
+
+    <!-- Vertical stem -->
+    <path
+        android:fillColor="#1A3A5C"
+        android:pathData="M52,28 L56,28 L56,76 L52,76 Z"/>
+
+    <!-- Brass accent dot -->
+    <path
+        android:fillColor="#C8962A"
+        android:pathData="M54,72 m-5,0 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0"/>
+
+</vector>

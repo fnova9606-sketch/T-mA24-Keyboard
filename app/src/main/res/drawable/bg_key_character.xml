@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Background for standard character keys.
+    Uses a StateListDrawable so pressed state gives instant visual feedback.
+    The bottom shadow layer gives a physical "keycap" depth effect.
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Pressed state — slightly darker, shadow shrinks to simulate press -->
+    <item android:state_pressed="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/light_key_bg_pressed"/>
+                    <corners android:radius="6dp"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <!-- Normal state — white keycap with bottom shadow -->
+    <item>
+        <layer-list>
+            <!-- Shadow layer (bottom offset) -->
+            <item android:top="2dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/light_key_shadow"/>
+                    <corners android:radius="6dp"/>
+                </shape>
+            </item>
+            <!-- Keycap surface -->
+            <item android:bottom="2dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/light_key_bg"/>
+                    <corners android:radius="6dp"/>
+                    <stroke
+                        android:width="0.5dp"
+                        android:color="@color/light_key_border"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+</selector>

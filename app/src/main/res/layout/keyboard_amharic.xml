@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/light_keyboard_bg"
+    android:paddingBottom="4dp">
+
+    <!-- ══ Resize handle ════════════════════════════════════════════ -->
+    <com.tma24.keyboard.ResizeHandle
+        android:id="@+id/resize_handle"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"/>
+
+    <!-- ══ Row 0 — Editing toolbar ══════════════════════════════════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:orientation="horizontal"
+        android:background="@color/family_bar_bg_light">
+
+        <Button
+            android:tag="key:SELECT_ALL"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/label_select_all"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            android:background="@color/transparent"
+            android:gravity="center"
+            style="?android:attr/borderlessButtonStyle"/>
+
+        <View android:layout_width="1dp" android:layout_height="match_parent"
+            android:background="#33FFFFFF"/>
+
+        <Button
+            android:tag="key:CUT"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/label_cut"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            android:background="@color/transparent"
+            android:gravity="center"
+            style="?android:attr/borderlessButtonStyle"/>
+
+        <View android:layout_width="1dp" android:layout_height="match_parent"
+            android:background="#33FFFFFF"/>
+
+        <Button
+            android:tag="key:COPY"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/label_copy"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            android:background="@color/transparent"
+            android:gravity="center"
+            style="?android:attr/borderlessButtonStyle"/>
+
+        <View android:layout_width="1dp" android:layout_height="match_parent"
+            android:background="#33FFFFFF"/>
+
+        <Button
+            android:tag="key:PASTE"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/label_paste"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            android:background="@color/transparent"
+            android:gravity="center"
+            style="?android:attr/borderlessButtonStyle"/>
+
+        <View android:layout_width="1dp" android:layout_height="match_parent"
+            android:background="#33FFFFFF"/>
+
+        <Button
+            android:tag="key:ARROW_L"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/label_arrow_left"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:background="@color/transparent"
+            android:gravity="center"
+            style="?android:attr/borderlessButtonStyle"/>
+
+        <Button
+            android:tag="key:ARROW_R"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/label_arrow_right"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:background="@color/transparent"
+            android:gravity="center"
+            style="?android:attr/borderlessButtonStyle"/>
+
+        <Button
+            android:tag="key:EMOJI"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="😊"
+            android:textSize="16sp"
+            android:background="@color/transparent"
+            android:gravity="center"
+            style="?android:attr/borderlessButtonStyle"/>
+
+    </LinearLayout>
+
+    <!-- ══ Row 1 — ቀ ወ አ ረ ተ የ ከ ዘ ፈ ══════════════════════════════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="6dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp">
+
+        <Button android:tag="key:q"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ቀ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:w"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ወ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:e"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="አ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:r"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ረ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:t"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ተ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:y"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="የ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:k"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ከ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:z"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ዘ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:p"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ፈ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+
+    </LinearLayout>
+
+    <!-- ══ Row 2 — ሀ ሰ ደ ጀ ገ ለ መ ነ ═══════════════════════════════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="4dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp">
+
+        <Button android:tag="key:a"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ሀ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:s"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ሰ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:d"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ደ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:j"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ጀ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:g"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ገ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:l"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ለ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:m"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="መ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:n"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ነ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+
+    </LinearLayout>
+
+    <!-- ══ Row 3 — Special Ethiopic chars + ⌫ ══════════════════════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="4dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp">
+
+        <Button android:tag="key:ሐ"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ሐ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:ሸ"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ሸ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:ቸ"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ቸ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:ኘ"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ኘ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:ዐ"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ዐ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:ጠ"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ጠ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:ጨ"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:text="ጨ" android:textSize="22sp"
+            style="@style/KeyStyle.Character"/>
+
+        <Button
+            android:tag="key:BACKSPACE"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1.5"
+            android:text="@string/label_backspace"
+            android:textSize="18sp"
+            style="@style/KeyStyle.Special"/>
+
+    </LinearLayout>
+
+    <!-- ══ Row 4 — Numbers ══════════════════════════════════════════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="4dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp">
+
+        <Button android:tag="key:1" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1"
+            android:text="1" style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:2" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1"
+            android:text="2" style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:3" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1"
+            android:text="3" style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:4" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1"
+            android:text="4" style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:5" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1"
+            android:text="5" style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:6" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1"
+            android:text="6" style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:7" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1"
+            android:text="7" style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:8" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1"
+            android:text="8" style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:9" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1"
+            android:text="9" style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:0" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1"
+            android:text="0" style="@style/KeyStyle.Character"/>
+
+    </LinearLayout>
+
+    <!-- ══ Row 5 — Bottom row ═══════════════════════════════════════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp">
+
+        <Button
+            android:tag="key:MODE_EN"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1.5"
+            android:text="@string/label_mode_en"
+            android:textSize="12sp"
+            style="@style/KeyStyle.Mode"/>
+
+        <Button
+            android:tag="key:።"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="0.8"
+            android:text="።"
+            android:textSize="20sp"
+            style="@style/KeyStyle.Character"/>
+
+        <Button
+            android:tag="key:SPACE"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="4"
+            android:text="@string/label_space_am"
+            android:textSize="13sp"
+            style="@style/KeyStyle.Action"/>
+
+        <Button
+            android:tag="key:፣"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="0.8"
+            android:text="፣"
+            android:textSize="20sp"
+            style="@style/KeyStyle.Character"/>
+
+        <Button
+            android:tag="key:ENTER"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1.8"
+            android:text="@string/label_return"
+            android:textSize="20sp"
+            style="@style/KeyStyle.Action"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Background for special / functional keys:
+    Shift, Backspace, Tab, Esc.
+    Darker than character keys to visually distinguish them.
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Pressed -->
+    <item android:state_pressed="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#909090"/>
+                    <corners android:radius="6dp"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <!-- Normal -->
+    <item>
+        <layer-list>
+            <!-- Shadow -->
+            <item android:top="2dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/light_key_shadow"/>
+                    <corners android:radius="6dp"/>
+                </shape>
+            </item>
+            <!-- Surface -->
+            <item android:bottom="2dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/light_key_special_bg"/>
+                    <corners android:radius="6dp"/>
+                    <stroke
+                        android:width="0.5dp"
+                        android:color="@color/light_key_border"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+</selector>

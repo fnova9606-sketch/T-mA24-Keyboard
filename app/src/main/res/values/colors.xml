@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ── Brand palette ───────────────────────────────────────────── -->
+    <!-- Ledger blue — primary action colour -->
+    <color name="ledger_blue">#1A3A5C</color>
+    <color name="ledger_blue_light">#2A5A8C</color>
+    <color name="ledger_blue_dark">#0D1F33</color>
+
+    <!-- Parchment — warm key surface -->
+    <color name="parchment">#F5F0E8</color>
+    <color name="parchment_dark">#E8E0D0</color>
+
+    <!-- Brass / gold accent — mode indicators, active shift -->
+    <color name="brass">#C8962A</color>
+    <color name="brass_light">#E8B84B</color>
+
+    <!-- ── Light theme ─────────────────────────────────────────────── -->
+    <color name="light_keyboard_bg">#D1C4B0</color>
+    <color name="light_key_bg">#FDFAF5</color>
+    <color name="light_key_bg_pressed">#E8E0D0</color>
+    <color name="light_key_special_bg">#B8AFA0</color>  <!-- backspace, shift, enter -->
+    <color name="light_key_action_bg">#1A3A5C</color>   <!-- space, enter action keys -->
+    <color name="light_key_text">#1A1A1A</color>
+    <color name="light_key_text_special">#FFFFFF</color>
+    <color name="light_key_text_sub">#888888</color>    <!-- long-press hint character -->
+    <color name="light_key_border">#C0B8A8</color>
+    <color name="light_key_shadow">#80000000</color>
+
+    <!-- Candidates / strip bar -->
+    <color name="light_strip_bg">#EAE4D8</color>
+    <color name="light_chip_bg">#FFFFFF</color>
+    <color name="light_chip_text">#1A3A5C</color>
+    <color name="light_chip_border">#1A3A5C</color>
+    <color name="light_strip_hint_text">#888888</color>
+
+    <!-- Toolbar (select/copy/paste/cut) -->
+    <color name="light_toolbar_bg">#1A3A5C</color>
+    <color name="light_toolbar_text">#FFFFFF</color>
+
+    <!-- ── Dark theme ──────────────────────────────────────────────── -->
+    <color name="dark_keyboard_bg">#0D1520</color>
+    <color name="dark_key_bg">#1E2D3D</color>
+    <color name="dark_key_bg_pressed">#2A3D52</color>
+    <color name="dark_key_special_bg">#0D1520</color>
+    <color name="dark_key_action_bg">#C8962A</color>
+    <color name="dark_key_text">#F0EDE8</color>
+    <color name="dark_key_text_special">#F0EDE8</color>
+    <color name="dark_key_text_sub">#888888</color>
+    <color name="dark_key_border">#2A3D52</color>
+    <color name="dark_key_shadow">#80000000</color>
+
+    <color name="dark_strip_bg">#0A1018</color>
+    <color name="dark_chip_bg">#1E2D3D</color>
+    <color name="dark_chip_text">#C8962A</color>
+    <color name="dark_chip_border">#C8962A</color>
+    <color name="dark_strip_hint_text">#666666</color>
+
+    <color name="dark_toolbar_bg">#0A1018</color>
+    <color name="dark_toolbar_text">#C8962A</color>
+
+    <!-- ── Amharic family bar ──────────────────────────────────────── -->
+    <color name="family_bar_bg_light">#1A3A5C</color>
+    <color name="family_bar_bg_dark">#0A1018</color>
+    <color name="family_btn_bg_light">#2A5A8C</color>
+    <color name="family_btn_bg_dark">#1E2D3D</color>
+    <color name="family_btn_text_light">#FFFFFF</color>
+    <color name="family_btn_text_dark">#C8962A</color>
+
+    <!-- ── Coding mode accents ─────────────────────────────────────── -->
+    <color name="coding_bracket_text">#E8B84B</color>    <!-- { } [ ] ( ) -->
+    <color name="coding_operator_text">#7EC8E3</color>   <!-- = + - * / -->
+    <color name="coding_string_text">#98D982</color>     <!-- ' " ` -->
+    <color name="coding_arrow_bg">#1A3A5C</color>
+
+    <!-- ── Universal ──────────────────────────────────────────────── -->
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- Launcher icon background -->
+    <color name="ic_launcher_background">#1A3A5C</color>
+
+</resources>

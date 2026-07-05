@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tma24.keyboard">
+
+    <!-- Core permissions only — no internet, absolute privacy -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- READ_MEDIA_IMAGES for Android 13+ (OCR image picking) -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TMA24Keyboard"
+        android:hardwareAccelerated="true">
+
+        <!--
+            The InputMethodService is the heart of any keyboard app.
+            It is declared as a SERVICE, not an Activity.
+            The intent-filter tells Android this is an input method.
+            The meta-data points to method.xml which describes our subtypes
+            (English, Amharic, Coding).
+        -->
+        <service
+            android:name=".TMA24InputMethodService"
+            android:label="@string/ime_name"
+            android:permission="android.permission.BIND_INPUT_METHOD"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.view.InputMethod" />
+            </intent-filter>
+            <meta-data
+                android:name="android.view.im"
+                android:resource="@xml/method" />
+        </service>
+
+        <!-- Settings Activity — launched from system keyboard settings -->
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/settings_title"
+            android:exported="true"
+            android:theme="@style/Theme.TMA24Keyboard.Settings">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

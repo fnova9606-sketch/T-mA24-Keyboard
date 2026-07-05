@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">T-mA24 Keyboard</string>
+    <string name="ime_name">T-mA24 Keyboard</string>
+    <string name="settings_title">T-mA24 Keyboard Settings</string>
+
+    <!-- Subtype labels shown in system language switcher -->
+    <string name="subtype_english">English (US)</string>
+    <string name="subtype_amharic">አማርኛ (Amharic)</string>
+    <string name="subtype_coding">Coding / Developer</string>
+
+    <!-- Toolbar labels -->
+    <string name="label_select_all">Select All</string>
+    <string name="label_copy">Copy</string>
+    <string name="label_paste">Paste</string>
+    <string name="label_cut">Cut</string>
+    <string name="label_clipboard">Clipboard</string>
+    <string name="label_no_clips">No clipboard history</string>
+
+    <!-- Mode switch button labels -->
+    <string name="label_mode_en">EN</string>
+    <string name="label_mode_am">አማ</string>
+    <string name="label_mode_code">&lt;/&gt;</string>
+
+    <!-- Key labels -->
+    <string name="label_space">space</string>
+    <string name="label_space_am">ክፍተት</string>
+    <string name="label_return">↵</string>
+    <string name="label_backspace">⌫</string>
+    <string name="label_shift">⇧</string>
+    <string name="label_shift_locked">⇪</string>
+    <string name="label_tab">⇥ Tab</string>
+    <string name="label_esc">Esc</string>
+    <string name="label_arrow_left">◀</string>
+    <string name="label_arrow_right">▶</string>
+    <string name="label_arrow_up">▲</string>
+    <string name="label_arrow_down">▼</string>
+
+    <!-- Settings options -->
+    <string name="pref_theme">Theme</string>
+    <string name="pref_theme_light">Light</string>
+    <string name="pref_theme_dark">Dark</string>
+    <string name="pref_theme_system">Follow System</string>
+    <string name="pref_haptic">Haptic Feedback</string>
+    <string name="pref_sound">Key Sounds</string>
+    <string name="pref_height">Keyboard Height</string>
+    <string name="pref_one_handed">One-Handed Mode</string>
+    <string name="pref_clear_clipboard">Clear Clipboard History</string>
+    <string name="pref_about">About T-mA24</string>
+
+    <!-- Amharic family bar hint -->
+    <string name="hint_pick_form">Pick the form:</string>
+    <!-- 7 Ethiopic order names shown above each family button -->
+    <string name="order_1">ግዕዝ</string>
+    <string name="order_2">ካዕብ</string>
+    <string name="order_3">ሣልስ</string>
+    <string name="order_4">ራብዕ</string>
+    <string name="order_5">ኃምስ</string>
+    <string name="order_6">ሳድስ</string>
+    <string name="order_7">ሳብዕ</string>
+</resources>

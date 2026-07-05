@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Candidates / strip view.
+    TMA24InputMethodService.updateCandidatesView() populates this
+    dynamically — either with Amharic family buttons or clipboard chips.
+
+    The outer LinearLayout is what onCreateCandidatesView() returns.
+    The service calls removeAllViews() then adds the correct content.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/candidates_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="52dp"
+    android:orientation="vertical"
+    android:background="@color/light_strip_bg">
+
+    <!-- ── Amharic order-name header (shown only in Amharic mode) ── -->
+    <LinearLayout
+        android:id="@+id/order_labels_row"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <!-- 7 tiny order-name labels — populated by service -->
+        <TextView android:id="@+id/order_label_1"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center"
+            android:text="@string/order_1"
+            android:textSize="9sp"
+            android:textColor="@color/light_strip_hint_text" />
+        <TextView android:id="@+id/order_label_2"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center"
+            android:text="@string/order_2"
+            android:textSize="9sp"
+            android:textColor="@color/light_strip_hint_text" />
+        <TextView android:id="@+id/order_label_3"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center"
+            android:text="@string/order_3"
+            android:textSize="9sp"
+            android:textColor="@color/light_strip_hint_text" />
+        <TextView android:id="@+id/order_label_4"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center"
+            android:text="@string/order_4"
+            android:textSize="9sp"
+            android:textColor="@color/light_strip_hint_text" />
+        <TextView android:id="@+id/order_label_5"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center"
+            android:text="@string/order_5"
+            android:textSize="9sp"
+            android:textColor="@color/light_strip_hint_text" />
+        <TextView android:id="@+id/order_label_6"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center"
+            android:text="@string/order_6"
+            android:textSize="9sp"
+            android:textColor="@color/light_strip_hint_text" />
+        <TextView android:id="@+id/order_label_7"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center"
+            android:text="@string/order_7"
+            android:textSize="9sp"
+            android:textColor="@color/light_strip_hint_text" />
+
+    </LinearLayout>
+
+    <!-- ── Main content row — buttons inserted here dynamically ── -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:id="@+id/strip_content_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:gravity="center_vertical" />
+
+    </HorizontalScrollView>
+
+</LinearLayout>
