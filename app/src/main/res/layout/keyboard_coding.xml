@@ -7,11 +7,13 @@
     android:background="@color/dark_keyboard_bg"
     android:paddingBottom="4dp">
 
+    <!-- ══ Resize handle ════════════════════════════════════════════ -->
     <com.tma24.keyboard.ResizeHandle
         android:id="@+id/resize_handle"
         android:layout_width="match_parent"
         android:layout_height="12dp"/>
 
+    <!-- ══ Row 0 — Esc / Tab / Ctrl shortcuts / ⌫ ══════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="38dp"
@@ -117,6 +119,7 @@
 
     </LinearLayout>
 
+    <!-- ══ Row 1 — ` 1 2 3 4 5 6 7 8 9 0 - = ══════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -125,74 +128,82 @@
         android:paddingStart="2dp"
         android:paddingEnd="2dp">
 
-        <Button android:tag="key:`" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="`" android:textSize="15sp"
+        <Button android:tag="key:`"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="`" android:textSize="15sp"
             android:textColor="@color/coding_string_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:1" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="1" android:textSize="15sp"
+        <Button android:tag="key:1"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="1" android:textSize="15sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:2" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="2" android:textSize="15sp"
+        <Button android:tag="key:2"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="2" android:textSize="15sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:3" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="3" android:textSize="15sp"
+        <Button android:tag="key:3"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="3" android:textSize="15sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:4" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="4" android:textSize="15sp"
+        <Button android:tag="key:4"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="4" android:textSize="15sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:5" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="5" android:textSize="15sp"
+        <Button android:tag="key:5"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="5" android:textSize="15sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:6" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="6" android:textSize="15sp"
+        <Button android:tag="key:6"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="6" android:textSize="15sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:7" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="7" android:textSize="15sp"
+        <Button android:tag="key:7"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="7" android:textSize="15sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:8" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="8" android:textSize="15sp"
+        <Button android:tag="key:8"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="8" android:textSize="15sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:9" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="9" android:textSize="15sp"
+        <Button android:tag="key:9"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="9" android:textSize="15sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:0" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="0" android:textSize="15sp"
+        <Button android:tag="key:0"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="0" android:textSize="15sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:-" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="-" android:textSize="15sp"
+        <Button android:tag="key:-"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="-" android:textSize="15sp"
             android:textColor="@color/coding_operator_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:=" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="=" android:textSize="15sp"
+        <Button android:tag="key:="
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="=" android:textSize="15sp"
             android:textColor="@color/coding_operator_text"
             style="@style/KeyStyle.Character"/>
 
     </LinearLayout>
 
+    <!-- ══ Row 2 — [ ] { } ( ) < > | \ / ═══════════════════════════ -->
+    <!--
+        IMPORTANT: android:tag must use XML escapes for special characters:
+        <  must be written as  &lt;
+        >  must be written as  &gt;
+        &  must be written as  &amp;
+        The android:text display value can use &lt; and &gt; too.
+    -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -201,64 +212,68 @@
         android:paddingStart="2dp"
         android:paddingEnd="2dp">
 
-        <Button android:tag="key:[" android:layout_width="0dp"
-            android:layout_height="44dp" android:layout_weight="1"
-            android:text="[" android:textSize="18sp"
+        <Button android:tag="key:["
+            android:layout_width="0dp" android:layout_height="44dp"
+            android:layout_weight="1" android:text="[" android:textSize="18sp"
             android:textColor="@color/coding_bracket_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:]" android:layout_width="0dp"
-            android:layout_height="44dp" android:layout_weight="1"
-            android:text="]" android:textSize="18sp"
+        <Button android:tag="key:]"
+            android:layout_width="0dp" android:layout_height="44dp"
+            android:layout_weight="1" android:text="]" android:textSize="18sp"
             android:textColor="@color/coding_bracket_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:{" android:layout_width="0dp"
-            android:layout_height="44dp" android:layout_weight="1"
-            android:text="{" android:textSize="18sp"
+        <Button android:tag="key:{"
+            android:layout_width="0dp" android:layout_height="44dp"
+            android:layout_weight="1" android:text="{" android:textSize="18sp"
             android:textColor="@color/coding_bracket_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:}" android:layout_width="0dp"
-            android:layout_height="44dp" android:layout_weight="1"
-            android:text="}" android:textSize="18sp"
+        <Button android:tag="key:}"
+            android:layout_width="0dp" android:layout_height="44dp"
+            android:layout_weight="1" android:text="}" android:textSize="18sp"
             android:textColor="@color/coding_bracket_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:(" android:layout_width="0dp"
-            android:layout_height="44dp" android:layout_weight="1"
-            android:text="(" android:textSize="18sp"
+        <Button android:tag="key:("
+            android:layout_width="0dp" android:layout_height="44dp"
+            android:layout_weight="1" android:text="(" android:textSize="18sp"
             android:textColor="@color/coding_bracket_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:)" android:layout_width="0dp"
-            android:layout_height="44dp" android:layout_weight="1"
-            android:text=")" android:textSize="18sp"
+        <Button android:tag="key:)"
+            android:layout_width="0dp" android:layout_height="44dp"
+            android:layout_weight="1" android:text=")" android:textSize="18sp"
             android:textColor="@color/coding_bracket_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:<" android:layout_width="0dp"
-            android:layout_height="44dp" android:layout_weight="1"
-            android:text="&lt;" android:textSize="18sp"
+
+        <!-- < and > MUST use &lt; and &gt; inside android:tag -->
+        <Button android:tag="key:&lt;"
+            android:layout_width="0dp" android:layout_height="44dp"
+            android:layout_weight="1" android:text="&lt;" android:textSize="18sp"
             android:textColor="@color/coding_bracket_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:>" android:layout_width="0dp"
-            android:layout_height="44dp" android:layout_weight="1"
-            android:text="&gt;" android:textSize="18sp"
+        <Button android:tag="key:&gt;"
+            android:layout_width="0dp" android:layout_height="44dp"
+            android:layout_weight="1" android:text="&gt;" android:textSize="18sp"
             android:textColor="@color/coding_bracket_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:|" android:layout_width="0dp"
-            android:layout_height="44dp" android:layout_weight="1"
-            android:text="|" android:textSize="18sp"
+
+        <Button android:tag="key:|"
+            android:layout_width="0dp" android:layout_height="44dp"
+            android:layout_weight="1" android:text="|" android:textSize="18sp"
             android:textColor="@color/coding_operator_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:\" android:layout_width="0dp"
-            android:layout_height="44dp" android:layout_weight="1"
-            android:text="\" android:textSize="18sp"
+        <Button android:tag="key:\"
+            android:layout_width="0dp" android:layout_height="44dp"
+            android:layout_weight="1" android:text="\" android:textSize="18sp"
             android:textColor="@color/coding_operator_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:/" android:layout_width="0dp"
-            android:layout_height="44dp" android:layout_weight="1"
-            android:text="/" android:textSize="18sp"
+        <Button android:tag="key:/"
+            android:layout_width="0dp" android:layout_height="44dp"
+            android:layout_weight="1" android:text="/" android:textSize="18sp"
             android:textColor="@color/coding_operator_text"
             style="@style/KeyStyle.Character"/>
 
     </LinearLayout>
 
+    <!-- ══ Row 3 — @ # $ % ^ & * _ + ~ ; ═══════════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -267,64 +282,68 @@
         android:paddingStart="2dp"
         android:paddingEnd="2dp">
 
-        <Button android:tag="key:@" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="@" android:textSize="14sp"
+        <Button android:tag="key:@"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="@" android:textSize="14sp"
             android:textColor="@color/coding_operator_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:#" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="#" android:textSize="14sp"
+        <Button android:tag="key:#"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="#" android:textSize="14sp"
             android:textColor="@color/coding_operator_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:$" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="$" android:textSize="14sp"
+        <Button android:tag="key:$"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="$" android:textSize="14sp"
             android:textColor="@color/coding_operator_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:%" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="%" android:textSize="14sp"
+        <Button android:tag="key:%"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="%" android:textSize="14sp"
             android:textColor="@color/coding_operator_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:^" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="^" android:textSize="14sp"
+        <Button android:tag="key:^"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="^" android:textSize="14sp"
             android:textColor="@color/coding_operator_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:&amp;" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="&amp;" android:textSize="14sp"
+
+        <!-- & MUST use &amp; inside android:tag -->
+        <Button android:tag="key:&amp;"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="&amp;" android:textSize="14sp"
             android:textColor="@color/coding_operator_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:*" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="*" android:textSize="14sp"
+
+        <Button android:tag="key:*"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="*" android:textSize="14sp"
             android:textColor="@color/coding_operator_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:_" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="_" android:textSize="14sp"
+        <Button android:tag="key:_"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="_" android:textSize="14sp"
             android:textColor="@color/coding_operator_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:+" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="+" android:textSize="14sp"
+        <Button android:tag="key:+"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="+" android:textSize="14sp"
             android:textColor="@color/coding_operator_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:~" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="~" android:textSize="14sp"
+        <Button android:tag="key:~"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="~" android:textSize="14sp"
             android:textColor="@color/coding_operator_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:;" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text=";" android:textSize="14sp"
+        <Button android:tag="key:;"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text=";" android:textSize="14sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
 
     </LinearLayout>
 
+    <!-- ══ Row 4 — q w e r t y u i o p ════════════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -333,59 +352,60 @@
         android:paddingStart="2dp"
         android:paddingEnd="2dp">
 
-        <Button android:tag="key:q" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="q" android:textSize="14sp"
+        <Button android:tag="key:q"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="q" android:textSize="14sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:w" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="w" android:textSize="14sp"
+        <Button android:tag="key:w"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="w" android:textSize="14sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:e" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="e" android:textSize="14sp"
+        <Button android:tag="key:e"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="e" android:textSize="14sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:r" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="r" android:textSize="14sp"
+        <Button android:tag="key:r"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="r" android:textSize="14sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:t" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="t" android:textSize="14sp"
+        <Button android:tag="key:t"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="t" android:textSize="14sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:y" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="y" android:textSize="14sp"
+        <Button android:tag="key:y"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="y" android:textSize="14sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:u" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="u" android:textSize="14sp"
+        <Button android:tag="key:u"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="u" android:textSize="14sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:i" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="i" android:textSize="14sp"
+        <Button android:tag="key:i"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="i" android:textSize="14sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:o" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="o" android:textSize="14sp"
+        <Button android:tag="key:o"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="o" android:textSize="14sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:p" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="p" android:textSize="14sp"
+        <Button android:tag="key:p"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="p" android:textSize="14sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
 
     </LinearLayout>
 
+    <!-- ══ Row 5 — a s d f g h j k l : ' ══════════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -394,13 +414,189 @@
         android:paddingStart="6dp"
         android:paddingEnd="6dp">
 
-        <Button android:tag="key:a" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="a" android:textSize="14sp"
+        <Button android:tag="key:a"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="a" android:textSize="14sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
-        <Button android:tag="key:s" android:layout_width="0dp"
-            android:layout_height="40dp" android:layout_weight="1"
-            android:text="s" android:textSize="14sp"
+        <Button android:tag="key:s"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="s" android:textSize="14sp"
             android:textColor="@color/dark_key_text"
             style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:d"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="d" android:textSize="14sp"
+            android:textColor="@color/dark_key_text"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:f"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="f" android:textSize="14sp"
+            android:textColor="@color/dark_key_text"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:g"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="g" android:textSize="14sp"
+            android:textColor="@color/dark_key_text"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:h"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="h" android:textSize="14sp"
+            android:textColor="@color/dark_key_text"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:j"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="j" android:textSize="14sp"
+            android:textColor="@color/dark_key_text"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:k"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="k" android:textSize="14sp"
+            android:textColor="@color/dark_key_text"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:l"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="l" android:textSize="14sp"
+            android:textColor="@color/dark_key_text"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key::"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text=":" android:textSize="14sp"
+            android:textColor="@color/coding_operator_text"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:'"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="'" android:textSize="14sp"
+            android:textColor="@color/coding_string_text"
+            style="@style/KeyStyle.Character"/>
+
+    </LinearLayout>
+
+    <!-- ══ Row 6 — ⇧ z x c v b n m , . ? ⇧ ════════════════════════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="4dp"
+        android:paddingStart="2dp"
+        android:paddingEnd="2dp">
+
+        <Button android:tag="key:SHIFT"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1.4"
+            android:text="@string/label_shift" android:textSize="16sp"
+            android:textColor="@color/brass"
+            style="@style/KeyStyle.Special"/>
+        <Button android:tag="key:z"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="z" android:textSize="14sp"
+            android:textColor="@color/dark_key_text"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:x"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="x" android:textSize="14sp"
+            android:textColor="@color/dark_key_text"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:c"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="c" android:textSize="14sp"
+            android:textColor="@color/dark_key_text"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:v"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="v" android:textSize="14sp"
+            android:textColor="@color/dark_key_text"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:b"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="b" android:textSize="14sp"
+            android:textColor="@color/dark_key_text"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:n"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="n" android:textSize="14sp"
+            android:textColor="@color/dark_key_text"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:m"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="m" android:textSize="14sp"
+            android:textColor="@color/dark_key_text"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:,"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="," android:textSize="14sp"
+            android:textColor="@color/dark_key_text"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:."
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="." android:textSize="14sp"
+            android:textColor="@color/dark_key_text"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:?"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1" android:text="?" android:textSize="14sp"
+            android:textColor="@color/dark_key_text"
+            style="@style/KeyStyle.Character"/>
+        <Button android:tag="key:SHIFT"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1.4"
+            android:text="@string/label_shift" android:textSize="16sp"
+            android:textColor="@color/brass"
+            style="@style/KeyStyle.Special"/>
+
+    </LinearLayout>
+
+    <!-- ══ Row 7 — EN | am | SPACE | ▲▼◀▶ | ↵ ══════════════════════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:paddingStart="2dp"
+        android:paddingEnd="2dp">
+
+        <Button android:tag="key:MODE_EN"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1.2"
+            android:text="@string/label_mode_en" android:textSize="11sp"
+            style="@style/KeyStyle.Mode"/>
+        <Button android:tag="key:MODE_AM"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1.2"
+            android:text="@string/label_mode_am" android:textSize="13sp"
+            style="@style/KeyStyle.Mode"/>
+        <Button android:tag="key:SPACE"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="3"
+            android:text="@string/label_space" android:textSize="12sp"
+            style="@style/KeyStyle.Action"/>
+        <Button android:tag="key:ARROW_U"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="0.9"
+            android:text="@string/label_arrow_up" android:textSize="14sp"
+            style="@style/KeyStyle.Arrow"/>
+        <Button android:tag="key:ARROW_D"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="0.9"
+            android:text="@string/label_arrow_down" android:textSize="14sp"
+            style="@style/KeyStyle.Arrow"/>
+        <Button android:tag="key:ARROW_L"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="0.9"
+            android:text="@string/label_arrow_left" android:textSize="14sp"
+            style="@style/KeyStyle.Arrow"/>
+        <Button android:tag="key:ARROW_R"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="0.9"
+            android:text="@string/label_arrow_right" android:textSize="14sp"
+            style="@style/KeyStyle.Arrow"/>
+        <Button android:tag="key:ENTER"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="1.4"
+            android:text="@string/label_return" android:textSize="18sp"
+            style="@style/KeyStyle.Action"/>
+
+    </LinearLayout>
+
+</LinearLayout>
