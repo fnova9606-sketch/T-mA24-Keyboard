@@ -20,6 +20,39 @@
         tools:replace="android:allowBackup,android:icon,android:label,android:supportsRtl,android:theme,android:hardwareAccelerated,android:extractNativeLibs"
         tools:ignore="GoogleAppIndexingWarning">
 
+        <!--
+            Remove any MainActivity injected by library dependencies.
+            Some versions of androidx.emoji2 and pl.droidsonroids.gif
+            inject an internal activity without android:exported set,
+            which causes the merger to fail on targetSdk 31+.
+            tools:node="removeAll" tells the merger to strip every
+            activity element named MainActivity from library manifests.
+        -->
+        <activity
+            android:name="com.tma24.keyboard.MainActivity"
+            tools:node="remove" />
+
+        <!--
+            Safety removal for any emoji2 internal FileProvider or
+            activity that gets merged without android:exported.
+        -->
+        <activity
+            android:name="androidx.emoji2.text.EmojiCompatInitializer"
+            tools:node="remove" />
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+                tools:node="remove" />
+            <meta-data
+                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+                tools:node="remove" />
+        </provider>
+
         <service
             android:name=".TMA24InputMethodService"
             android:label="@string/ime_name"
