@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        Custom attribute declarations for T-mA24 Keyboard.
+        These must exist in attrs.xml before any style or layout
+        can reference attr/keyBackground, attr/keyTextSize, etc.
+        AAPT2 requires every custom attribute to be declared here
+        before it can be used anywhere in the resource tree.
+    -->
+
+    <declare-styleable name="TMA24KeyboardView">
+
+        <!-- Background drawable for each key -->
+        <attr name="keyBackground" format="reference" />
+
+        <!-- Text size for key labels in sp -->
+        <attr name="keyTextSize" format="dimension" />
+
+        <!-- Text colour for key labels -->
+        <attr name="keyTextColor" format="color|reference" />
+
+        <!-- Text size for modifier / function key labels -->
+        <attr name="labelTextSize" format="dimension" />
+
+        <!-- Layout reference for the key press preview popup -->
+        <attr name="keyPreviewLayout" format="reference" />
+
+        <!-- Vertical offset for the key press preview popup in px -->
+        <attr name="keyPreviewOffset" format="dimension" />
+
+        <!-- Height of the key press preview popup -->
+        <attr name="keyPreviewHeight" format="dimension" />
+
+        <!-- Layout reference for the long-press character popup -->
+        <attr name="popupLayout" format="reference" />
+
+        <!-- Vertical correction for touch coordinates in px -->
+        <attr name="verticalCorrection" format="dimension" />
+
+    </declare-styleable>
+
+    <!--
+        Separate declare-styleable for the ResizeHandle custom view.
+        Required because ResizeHandle is a custom View subclass and
+        may need its own attributes in future iterations.
+    -->
+    <declare-styleable name="ResizeHandle">
+        <!-- intentionally empty — ResizeHandle reads prefs directly -->
+    </declare-styleable>
+
+</resources>
