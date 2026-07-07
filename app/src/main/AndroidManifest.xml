@@ -17,7 +17,7 @@
         android:theme="@style/Theme.TMA24Keyboard"
         android:hardwareAccelerated="true"
         android:extractNativeLibs="true"
-        tools:replace="android:allowBackup,android:supportsRtl,android:theme,android:hardwareAccelerated,android:extractNativeLibs"
+        tools:replace="android:allowBackup,android:icon,android:label,android:supportsRtl,android:theme,android:hardwareAccelerated,android:extractNativeLibs"
         tools:ignore="GoogleAppIndexingWarning">
 
         <service
