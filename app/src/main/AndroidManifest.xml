@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.tma24.keyboard">
 
-    <!-- Core permissions only — no internet, absolute privacy -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
@@ -18,7 +17,8 @@
         android:theme="@style/Theme.TMA24Keyboard"
         android:hardwareAccelerated="true"
         android:extractNativeLibs="true"
-        tools:replace="android:allowBackup">
+        tools:replace="android:allowBackup,android:supportsRtl,android:theme,android:hardwareAccelerated,android:extractNativeLibs"
+        tools:ignore="GoogleAppIndexingWarning">
 
         <service
             android:name=".TMA24InputMethodService"
