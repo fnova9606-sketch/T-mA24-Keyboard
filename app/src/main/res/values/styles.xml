@@ -1,10 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--
-        KeyStyle.Character — standard letter/symbol key
-    -->
-    <style name="KeyStyle.Character">
+    <!-- ═══════════════════════════════════════════════════════════════
+         BASE PARENT STYLES
+         AAPT2 requires the base name (e.g. "KeyStyle") to exist as a
+         real style entry before any child ("KeyStyle.Character") can
+         inherit from it via the dot-notation shorthand.
+         ═══════════════════════════════════════════════════════════════ -->
+
+    <style name="KeyStyle">
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:minHeight">40dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:textColor">@color/light_key_text</item>
+        <item name="android:background">@drawable/bg_key_character</item>
+    </style>
+
+    <style name="FamilyStyle">
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:textColor">@color/family_btn_text_light</item>
+        <item name="android:background">@drawable/bg_family_btn</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">serif</item>
+    </style>
+
+    <style name="ClipStyle">
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:textColor">@color/light_chip_text</item>
+        <item name="android:background">@drawable/bg_chip</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         APPLICATION THEME
+         Parent must be a fully qualified Material3 theme that exists
+         in the com.google.android.material:material:1.11.0 artifact.
+         Theme.Material3.DayNight.NoActionBar is the correct parent
+         for a keyboard settings activity that supports dark mode.
+         ═══════════════════════════════════════════════════════════════ -->
+
+    <style name="Theme.TMA24Keyboard" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/ledger_blue</item>
+        <item name="colorPrimaryVariant">@color/ledger_blue_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/brass</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:colorBackground">@color/parchment</item>
+        <item name="android:windowBackground">@color/parchment</item>
+        <item name="android:statusBarColor">@color/ledger_blue_dark</item>
+        <item name="android:navigationBarColor">@color/ledger_blue_dark</item>
+    </style>
+
+    <style name="Theme.TMA24Keyboard.Settings" parent="Theme.TMA24Keyboard">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         CHILD KEY STYLES
+         Each child explicitly declares parent="KeyStyle" rather than
+         relying solely on dot-notation, so AAPT2 can resolve the
+         inheritance chain even if it encounters the child before the
+         parent during parallel resource compilation.
+         ═══════════════════════════════════════════════════════════════ -->
+
+    <style name="KeyStyle.Character" parent="KeyStyle">
         <item name="android:layout_margin">2dp</item>
         <item name="android:minHeight">40dp</item>
         <item name="android:gravity">center</item>
@@ -15,10 +88,7 @@
         <item name="android:textColor">@color/light_key_text</item>
     </style>
 
-    <!--
-        KeyStyle.Special — shift, backspace, tab, esc
-    -->
-    <style name="KeyStyle.Special">
+    <style name="KeyStyle.Special" parent="KeyStyle">
         <item name="android:layout_margin">2dp</item>
         <item name="android:minHeight">40dp</item>
         <item name="android:gravity">center</item>
@@ -28,10 +98,7 @@
         <item name="android:textColor">@color/light_key_text</item>
     </style>
 
-    <!--
-        KeyStyle.Action — space bar, enter
-    -->
-    <style name="KeyStyle.Action">
+    <style name="KeyStyle.Action" parent="KeyStyle">
         <item name="android:layout_margin">2dp</item>
         <item name="android:minHeight">40dp</item>
         <item name="android:gravity">center</item>
@@ -41,10 +108,7 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <!--
-        KeyStyle.Mode — EN / አማ / </> mode switch pills
-    -->
-    <style name="KeyStyle.Mode">
+    <style name="KeyStyle.Mode" parent="KeyStyle">
         <item name="android:layout_margin">2dp</item>
         <item name="android:minHeight">40dp</item>
         <item name="android:gravity">center</item>
@@ -56,10 +120,7 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <!--
-        KeyStyle.Arrow — coding mode arrow keys
-    -->
-    <style name="KeyStyle.Arrow">
+    <style name="KeyStyle.Arrow" parent="KeyStyle">
         <item name="android:layout_margin">2dp</item>
         <item name="android:minHeight">40dp</item>
         <item name="android:gravity">center</item>
@@ -70,9 +131,26 @@
     </style>
 
     <!--
-        ClipStyle.Chip — clipboard suggestion chips in the strip bar
+        KeyStyle.Modifier — required by the error log.
+        Your layout XML or a library references this style name.
+        Defined here so AAPT2 can resolve it.
     -->
-    <style name="ClipStyle.Chip">
+    <style name="KeyStyle.Modifier" parent="KeyStyle">
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:minHeight">40dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">@drawable/bg_key_special</item>
+        <item name="android:textColor">@color/light_key_text</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         CHILD CLIP AND FAMILY STYLES
+         ═══════════════════════════════════════════════════════════════ -->
+
+    <style name="ClipStyle.Chip" parent="ClipStyle">
         <item name="android:layout_margin">3dp</item>
         <item name="android:paddingStart">10dp</item>
         <item name="android:paddingEnd">10dp</item>
@@ -89,10 +167,7 @@
         <item name="android:textSize">13sp</item>
     </style>
 
-    <!--
-        FamilyStyle.Button — Amharic 7-order family bar buttons
-    -->
-    <style name="FamilyStyle.Button">
+    <style name="FamilyStyle.Button" parent="FamilyStyle">
         <item name="android:layout_margin">2dp</item>
         <item name="android:minHeight">52dp</item>
         <item name="android:gravity">center</item>
