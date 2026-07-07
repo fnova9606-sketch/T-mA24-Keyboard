@@ -20,26 +20,25 @@
         tools:replace="android:allowBackup,android:icon,android:label,android:supportsRtl,android:theme,android:hardwareAccelerated,android:extractNativeLibs"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <!--
-            Remove any MainActivity injected by library dependencies.
-            Some versions of androidx.emoji2 and pl.droidsonroids.gif
-            inject an internal activity without android:exported set,
-            which causes the merger to fail on targetSdk 31+.
-            tools:node="removeAll" tells the merger to strip every
-            activity element named MainActivity from library manifests.
-        -->
+        <!-- Remove phantom MainActivity injected by library deps -->
         <activity
             android:name="com.tma24.keyboard.MainActivity"
             tools:node="remove" />
 
-        <!--
-            Safety removal for any emoji2 internal FileProvider or
-            activity that gets merged without android:exported.
-        -->
+        <!-- Remove misclassified emoji2 initializer activity node -->
         <activity
             android:name="androidx.emoji2.text.EmojiCompatInitializer"
             tools:node="remove" />
 
+        <!--
+            Override the androidx.startup InitializationProvider that is
+            injected transitively by lifecycle-runtime-ktx and emoji2.
+            We disable automatic EmojiCompat and Lifecycle initialisation
+            because the keyboard service manages its own lifecycle and does
+            not need App Startup to run. Setting android:exported="false"
+            and tools:node="merge" ensures our declaration wins and the
+            provider is never exposed externally.
+        -->
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
@@ -51,8 +50,18 @@
             <meta-data
                 android:name="androidx.lifecycle.ProcessLifecycleInitializer"
                 tools:node="remove" />
+            <meta-data
+                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+                tools:node="remove" />
         </provider>
 
+        <!--
+            TMA24InputMethodService — the core IME service.
+            android:exported="true" is mandatory for any service that
+            carries an intent-filter on targetSdk 31+. The system
+            binds to this service via android.view.InputMethod.
+            android:permission restricts binding to the system only.
+        -->
         <service
             android:name=".TMA24InputMethodService"
             android:label="@string/ime_name"
@@ -66,6 +75,12 @@
                 android:resource="@xml/method" />
         </service>
 
+        <!--
+            SettingsActivity — launcher entry point and IME settings target.
+            android:exported="true" is mandatory because this activity
+            carries an intent-filter and must be reachable by the system
+            keyboard settings screen on targetSdk 31+.
+        -->
         <activity
             android:name=".SettingsActivity"
             android:label="@string/settings_title"
