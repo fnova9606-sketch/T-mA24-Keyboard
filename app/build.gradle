@@ -15,8 +15,6 @@ android {
         versionName "1.0.0"
         vectorDrawables.useSupportLibrary = true
 
-        // Tells the manifest merger how to handle conflicts
-        // from library manifests injected by ML Kit and GIF drawable
         manifestPlaceholders = [
             appAuthRedirectScheme: "com.tma24.keyboard"
         ]
@@ -24,9 +22,6 @@ android {
 
     buildTypes {
         debug {
-            // applicationIdSuffix removed — it causes manifest merger
-            // failures in IME apps when library manifests are merged
-            // because component names become unresolvable at link time
             debuggable true
             minifyEnabled false
         }
@@ -59,49 +54,34 @@ android {
         exclude 'META-INF/NOTICE.txt'
         exclude 'META-INF/LICENSE.md'
         exclude 'META-INF/NOTICE.md'
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
     }
 
-    // Prevent manifest merger from failing on attribute conflicts
-    // introduced by transitive dependencies of ML Kit and GIF library
     configurations.all {
         resolutionStrategy {
             force 'androidx.core:core-ktx:1.12.0'
+            force 'androidx.core:core:1.12.0'
             force 'androidx.appcompat:appcompat:1.6.1'
+            force 'androidx.emoji2:emoji2:1.4.0'
         }
     }
 }
 
 dependencies {
 
-    // ── AndroidX Core ─────────────────────────────────────────────────
     implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.recyclerview:recyclerview:1.3.2'
-
-    // ── Material Design 3 ─────────────────────────────────────────────
     implementation 'com.google.android.material:material:1.11.0'
-
-    // ── ML Kit OCR — on-device, no internet ──────────────────────────
     implementation 'com.google.mlkit:text-recognition:16.0.0'
-
-    // ── GIF support ───────────────────────────────────────────────────
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.25'
-
-    // ── Coroutines ────────────────────────────────────────────────────
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3'
-
-    // ── Lifecycle ─────────────────────────────────────────────────────
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.7.0'
-
-    // ── Preferences ───────────────────────────────────────────────────
     implementation 'androidx.preference:preference-ktx:1.2.1'
-
-    // ── ViewPager2 ────────────────────────────────────────────────────
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
-
-    // ── EmojiCompat ───────────────────────────────────────────────────
     implementation 'androidx.emoji2:emoji2:1.4.0'
     implementation 'androidx.emoji2:emoji2-views:1.4.0'
 
