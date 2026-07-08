@@ -1,164 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- ═══════════════════════════════════════════════════════════════
-         BASE STYLES — required by AAPT as parents for child styles
-         ═══════════════════════════════════════════════════════════════ -->
+    <string name="app_name">T-mA24 Keyboard</string>
+    <string name="ime_name">T-mA24 Keyboard</string>
+    <string name="settings_title">T-mA24 Keyboard Settings</string>
 
-    <style name="KeyStyle">
-        <item name="android:layout_margin">2dp</item>
-        <item name="android:minHeight">40dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-        <item name="android:textColor">@color/light_key_text</item>
-        <item name="android:background">@drawable/bg_key_character</item>
-    </style>
+    <!-- Subtype labels shown in system language switcher -->
+    <string name="subtype_english">English (US)</string>
+    <string name="subtype_amharic">አማርኛ (Amharic)</string>
+    <string name="subtype_coding">Coding / Developer</string>
 
-    <style name="FamilyStyle">
-        <item name="android:layout_margin">2dp</item>
-        <item name="android:minHeight">52dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-        <item name="android:textColor">@color/family_btn_text_light</item>
-        <item name="android:background">@drawable/bg_family_btn</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:fontFamily">serif</item>
-    </style>
+    <!-- Toolbar labels -->
+    <string name="label_select_all">Select All</string>
+    <string name="label_copy">Copy</string>
+    <string name="label_paste">Paste</string>
+    <string name="label_cut">Cut</string>
+    <string name="label_clipboard">Clipboard</string>
+    <string name="label_no_clips">No clipboard history</string>
 
-    <style name="ClipStyle">
-        <item name="android:layout_margin">3dp</item>
-        <item name="android:paddingStart">10dp</item>
-        <item name="android:paddingEnd">10dp</item>
-        <item name="android:paddingTop">4dp</item>
-        <item name="android:paddingBottom">4dp</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-        <item name="android:textColor">@color/light_chip_text</item>
-        <item name="android:background">@drawable/bg_chip</item>
-        <item name="android:textSize">13sp</item>
-    </style>
+    <!-- Mode switch button labels -->
+    <string name="label_mode_en">EN</string>
+    <string name="label_mode_am">አማ</string>
+    <string name="label_mode_code">&lt;/&gt;</string>
 
-    <!-- ═══════════════════════════════════════════════════════════════
-         CHILD STYLES — inherit from their base and override as needed
-         ═══════════════════════════════════════════════════════════════ -->
+    <!-- Key labels -->
+    <string name="label_space">space</string>
+    <string name="label_space_am">ክፍተት</string>
+    <string name="label_return">↵</string>
+    <string name="label_backspace">⌫</string>
+    <string name="label_shift">⇧</string>
+    <string name="label_shift_locked">⇪</string>
+    <string name="label_tab">⇥ Tab</string>
+    <string name="label_esc">Esc</string>
+    <string name="label_arrow_left">◀</string>
+    <string name="label_arrow_right">▶</string>
+    <string name="label_arrow_up">▲</string>
+    <string name="label_arrow_down">▼</string>
 
-    <!--
-        KeyStyle.Character
-        Standard letter and symbol keys across all three keyboard panels.
-    -->
-    <style name="KeyStyle.Character" parent="KeyStyle">
-        <item name="android:layout_margin">2dp</item>
-        <item name="android:minHeight">40dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:background">@drawable/bg_key_character</item>
-        <item name="android:textColor">@color/light_key_text</item>
-    </style>
+    <!-- Settings options -->
+    <string name="pref_theme">Theme</string>
+    <string name="pref_theme_light">Light</string>
+    <string name="pref_theme_dark">Dark</string>
+    <string name="pref_theme_system">Follow System</string>
+    <string name="pref_haptic">Haptic Feedback</string>
+    <string name="pref_sound">Key Sounds</string>
+    <string name="pref_height">Keyboard Height</string>
+    <string name="pref_one_handed">One-Handed Mode</string>
+    <string name="pref_clear_clipboard">Clear Clipboard History</string>
+    <string name="pref_about">About T-mA24</string>
 
-    <!--
-        KeyStyle.Special
-        Functional keys: Shift, Backspace, Tab, Esc.
-        Darker surface to visually separate from character keys.
-    -->
-    <style name="KeyStyle.Special" parent="KeyStyle">
-        <item name="android:layout_margin">2dp</item>
-        <item name="android:minHeight">40dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-        <item name="android:background">@drawable/bg_key_special</item>
-        <item name="android:textColor">@color/light_key_text</item>
-    </style>
-
-    <!--
-        KeyStyle.Action
-        Primary action keys: Space bar and Enter.
-        Uses ledger-blue in light theme, brass in dark theme.
-    -->
-    <style name="KeyStyle.Action" parent="KeyStyle">
-        <item name="android:layout_margin">2dp</item>
-        <item name="android:minHeight">40dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-        <item name="android:background">@drawable/bg_key_action</item>
-        <item name="android:textColor">@color/white</item>
-    </style>
-
-    <!--
-        KeyStyle.Mode
-        Mode-switch pill buttons: EN, አማ, and the coding </> button.
-        Rounded pill shape via bg_key_mode drawable.
-    -->
-    <style name="KeyStyle.Mode" parent="KeyStyle">
-        <item name="android:layout_margin">2dp</item>
-        <item name="android:minHeight">40dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:paddingStart">10dp</item>
-        <item name="android:paddingEnd">10dp</item>
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-        <item name="android:background">@drawable/bg_key_mode</item>
-        <item name="android:textColor">@color/white</item>
-    </style>
-
-    <!--
-        KeyStyle.Arrow
-        Arrow and navigation keys in the coding keyboard bottom row.
-        Shares the action key background colour.
-    -->
-    <style name="KeyStyle.Arrow" parent="KeyStyle">
-        <item name="android:layout_margin">2dp</item>
-        <item name="android:minHeight">40dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-        <item name="android:background">@drawable/bg_key_action</item>
-        <item name="android:textColor">@color/white</item>
-    </style>
-
-    <!--
-        ClipStyle.Chip
-        Clipboard history suggestion chips shown in the candidates strip.
-        Horizontal pill shape with border via bg_chip drawable.
-    -->
-    <style name="ClipStyle.Chip" parent="ClipStyle">
-        <item name="android:layout_margin">3dp</item>
-        <item name="android:paddingStart">10dp</item>
-        <item name="android:paddingEnd">10dp</item>
-        <item name="android:paddingTop">4dp</item>
-        <item name="android:paddingBottom">4dp</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:maxWidth">160dp</item>
-        <item name="android:singleLine">true</item>
-        <item name="android:ellipsize">end</item>
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-        <item name="android:background">@drawable/bg_chip</item>
-        <item name="android:textColor">@color/light_chip_text</item>
-        <item name="android:textSize">13sp</item>
-    </style>
-
-    <!--
-        FamilyStyle.Button
-        The 7 Ethiopic order buttons shown in the Amharic candidates bar.
-        Large Ethiopic text, serif typeface, deep blue background.
-    -->
-    <style name="FamilyStyle.Button" parent="FamilyStyle">
-        <item name="android:layout_margin">2dp</item>
-        <item name="android:minHeight">52dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-        <item name="android:background">@drawable/bg_family_btn</item>
-        <item name="android:textColor">@color/family_btn_text_light</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:fontFamily">serif</item>
-    </style>
+    <!-- Amharic family bar order names -->
+    <string name="hint_pick_form">Pick the form:</string>
+    <string name="order_1">ግዕዝ</string>
+    <string name="order_2">ካዕብ</string>
+    <string name="order_3">ሣልስ</string>
+    <string name="order_4">ራብዕ</string>
+    <string name="order_5">ኃምስ</string>
+    <string name="order_6">ሳድስ</string>
+    <string name="order_7">ሳብዕ</string>
 
 </resources>
