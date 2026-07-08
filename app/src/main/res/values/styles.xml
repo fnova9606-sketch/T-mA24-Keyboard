@@ -2,10 +2,29 @@
 <resources>
 
     <!-- ═══════════════════════════════════════════════════════════════
+         APPLICATION THEMES
+         ═══════════════════════════════════════════════════════════════ -->
+
+    <style name="Theme.TMA24Keyboard" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/ledger_blue</item>
+        <item name="colorPrimaryVariant">@color/ledger_blue_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/brass</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:colorBackground">@color/parchment</item>
+        <item name="android:windowBackground">@color/parchment</item>
+        <item name="android:statusBarColor">@color/ledger_blue_dark</item>
+        <item name="android:navigationBarColor">@color/ledger_blue_dark</item>
+    </style>
+
+    <style name="Theme.TMA24Keyboard.Settings" parent="Theme.TMA24Keyboard">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- ═══════════════════════════════════════════════════════════════
          BASE PARENT STYLES
-         AAPT2 requires the base name (e.g. "KeyStyle") to exist as a
-         real style entry before any child ("KeyStyle.Character") can
-         inherit from it via the dot-notation shorthand.
+         Must exist before any dot-notation child can inherit from them.
          ═══════════════════════════════════════════════════════════════ -->
 
     <style name="KeyStyle">
@@ -45,36 +64,7 @@
     </style>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         APPLICATION THEME
-         Parent must be a fully qualified Material3 theme that exists
-         in the com.google.android.material:material:1.11.0 artifact.
-         Theme.Material3.DayNight.NoActionBar is the correct parent
-         for a keyboard settings activity that supports dark mode.
-         ═══════════════════════════════════════════════════════════════ -->
-
-    <style name="Theme.TMA24Keyboard" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/ledger_blue</item>
-        <item name="colorPrimaryVariant">@color/ledger_blue_dark</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/brass</item>
-        <item name="colorOnSecondary">@color/white</item>
-        <item name="android:colorBackground">@color/parchment</item>
-        <item name="android:windowBackground">@color/parchment</item>
-        <item name="android:statusBarColor">@color/ledger_blue_dark</item>
-        <item name="android:navigationBarColor">@color/ledger_blue_dark</item>
-    </style>
-
-    <style name="Theme.TMA24Keyboard.Settings" parent="Theme.TMA24Keyboard">
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
-    </style>
-
-    <!-- ═══════════════════════════════════════════════════════════════
          CHILD KEY STYLES
-         Each child explicitly declares parent="KeyStyle" rather than
-         relying solely on dot-notation, so AAPT2 can resolve the
-         inheritance chain even if it encounters the child before the
-         parent during parallel resource compilation.
          ═══════════════════════════════════════════════════════════════ -->
 
     <style name="KeyStyle.Character" parent="KeyStyle">
@@ -130,11 +120,6 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <!--
-        KeyStyle.Modifier — required by the error log.
-        Your layout XML or a library references this style name.
-        Defined here so AAPT2 can resolve it.
-    -->
     <style name="KeyStyle.Modifier" parent="KeyStyle">
         <item name="android:layout_margin">2dp</item>
         <item name="android:minHeight">40dp</item>
