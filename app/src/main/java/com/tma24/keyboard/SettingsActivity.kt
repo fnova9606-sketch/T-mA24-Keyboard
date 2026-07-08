@@ -1,5 +1,6 @@
 package com.tma24.keyboard
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
@@ -23,20 +24,18 @@ import androidx.preference.SwitchPreferenceCompat
  *   1. Launcher activity — the app icon opens this screen
  *   2. IME settings target — system keyboard settings links here
  *
- * Built entirely in Kotlin (no preferences XML file needed).
- * All preference keys are read by TMA24InputMethodService at runtime.
+ * Uses standard Android Views + AndroidX Preference library.
+ * No Jetpack Compose. No @Composable functions.
  */
 class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Apply theme before inflation
         applyThemeFromPrefs()
 
         setContentView(R.layout.activity_settings)
 
-        // Wire the toolbar
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
@@ -58,17 +57,17 @@ class SettingsActivity : AppCompatActivity() {
             "light" -> AppCompatDelegate.setDefaultNightMode(
                 AppCompatDelegate.MODE_NIGHT_NO
             )
-            "dark"  -> AppCompatDelegate.setDefaultNightMode(
+            "dark" -> AppCompatDelegate.setDefaultNightMode(
                 AppCompatDelegate.MODE_NIGHT_YES
             )
-            else    -> AppCompatDelegate.setDefaultNightMode(
+            else -> AppCompatDelegate.setDefaultNightMode(
                 AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
             )
         }
     }
 
     // ─────────────────────────────────────────────────────────────────
-    // Settings Fragment
+    // Settings Fragment — pure AndroidX Preference, no Compose
     // ─────────────────────────────────────────────────────────────────
 
     class SettingsFragment : PreferenceFragmentCompat() {
@@ -79,14 +78,18 @@ class SettingsActivity : AppCompatActivity() {
 
             // ── Setup ─────────────────────────────────────────────────
 
-            val setupCat = PreferenceCategory(ctx).apply { title = "Keyboard Setup" }
+            val setupCat = PreferenceCategory(ctx).apply {
+                title = "Keyboard Setup"
+            }
             screen.addPreference(setupCat)
 
             setupCat.addPreference(Preference(ctx).apply {
                 title   = "Enable T-mA24 Keyboard"
                 summary = "Open system keyboard settings to enable"
                 setOnPreferenceClickListener {
-                    startActivity(Intent(Settings.ACTION_INPUT_METHOD_SETTINGS))
+                    startActivity(
+                        Intent(Settings.ACTION_INPUT_METHOD_SETTINGS)
+                    )
                     true
                 }
             })
@@ -95,8 +98,13 @@ class SettingsActivity : AppCompatActivity() {
                 title   = "Switch to T-mA24 Keyboard"
                 summary = "Select T-mA24 as your active keyboard"
                 setOnPreferenceClickListener {
-                    val imm = requireContext()
-                        .getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                    // Use requireContext() to get Context inside Fragment,
+                    // then qualify getSystemService with Context.INPUT_METHOD_SERVICE.
+                    // Do NOT use bare INPUT_METHOD_SERVICE — that is an Activity
+                    // constant and is not in scope inside a Fragment class.
+                    val imm = requireContext().getSystemService(
+                        Context.INPUT_METHOD_SERVICE
+                    ) as InputMethodManager
                     imm.showInputMethodPicker()
                     true
                 }
@@ -104,35 +112,40 @@ class SettingsActivity : AppCompatActivity() {
 
             // ── Appearance ────────────────────────────────────────────
 
-            val appearCat = PreferenceCategory(ctx).apply { title = "Appearance" }
+            val appearCat = PreferenceCategory(ctx).apply {
+                title = "Appearance"
+            }
             screen.addPreference(appearCat)
 
             appearCat.addPreference(ListPreference(ctx).apply {
-                key          = "pref_theme"
-                title        = "Theme"
-                entries      = arrayOf("Light", "Dark", "Follow System")
-                entryValues  = arrayOf("light", "dark", "system")
+                key         = "pref_theme"
+                title       = "Theme"
+                entries     = arrayOf("Light", "Dark", "Follow System")
+                entryValues = arrayOf("light", "dark", "system")
                 setDefaultValue("system")
-                summary      = "%s"
+                summary     = "%s"
                 setOnPreferenceChangeListener { _, newValue ->
                     when (newValue as String) {
-                        "light"  -> AppCompatDelegate.setDefaultNightMode(
-                            AppCompatDelegate.MODE_NIGHT_NO)
-                        "dark"   -> AppCompatDelegate.setDefaultNightMode(
-                            AppCompatDelegate.MODE_NIGHT_YES)
-                        else     -> AppCompatDelegate.setDefaultNightMode(
-                            AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                        "light" -> AppCompatDelegate.setDefaultNightMode(
+                            AppCompatDelegate.MODE_NIGHT_NO
+                        )
+                        "dark" -> AppCompatDelegate.setDefaultNightMode(
+                            AppCompatDelegate.MODE_NIGHT_YES
+                        )
+                        else -> AppCompatDelegate.setDefaultNightMode(
+                            AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+                        )
                     }
                     true
                 }
             })
 
             appearCat.addPreference(SeekBarPreference(ctx).apply {
-                key            = "pref_height_scale"
-                title          = "Keyboard Height"
-                summary        = "Adjust keyboard height (50–150%)"
-                min            = 50
-                max            = 150
+                key              = "pref_height_scale"
+                title            = "Keyboard Height"
+                summary          = "Adjust keyboard height (50–150%)"
+                min              = 50
+                max              = 150
                 setDefaultValue(100)
                 showSeekBarValue = true
             })
@@ -156,7 +169,9 @@ class SettingsActivity : AppCompatActivity() {
 
             // ── Typing ────────────────────────────────────────────────
 
-            val typingCat = PreferenceCategory(ctx).apply { title = "Typing" }
+            val typingCat = PreferenceCategory(ctx).apply {
+                title = "Typing"
+            }
             screen.addPreference(typingCat)
 
             typingCat.addPreference(SwitchPreferenceCompat(ctx).apply {
@@ -183,13 +198,15 @@ class SettingsActivity : AppCompatActivity() {
             typingCat.addPreference(SwitchPreferenceCompat(ctx).apply {
                 key     = "pref_double_space_period"
                 title   = "Double-Space Period"
-                summary = "Double-tap spacebar to insert  \". \""
+                summary = "Double-tap spacebar to insert \". \""
                 setDefaultValue(true)
             })
 
             // ── Clipboard ─────────────────────────────────────────────
 
-            val clipCat = PreferenceCategory(ctx).apply { title = "Clipboard" }
+            val clipCat = PreferenceCategory(ctx).apply {
+                title = "Clipboard"
+            }
             screen.addPreference(clipCat)
 
             clipCat.addPreference(Preference(ctx).apply {
@@ -208,7 +225,9 @@ class SettingsActivity : AppCompatActivity() {
 
             // ── Privacy ───────────────────────────────────────────────
 
-            val privacyCat = PreferenceCategory(ctx).apply { title = "Privacy" }
+            val privacyCat = PreferenceCategory(ctx).apply {
+                title = "Privacy"
+            }
             screen.addPreference(privacyCat)
 
             privacyCat.addPreference(Preference(ctx).apply {
@@ -220,12 +239,14 @@ class SettingsActivity : AppCompatActivity() {
 
             // ── About ─────────────────────────────────────────────────
 
-            val aboutCat = PreferenceCategory(ctx).apply { title = "About" }
+            val aboutCat = PreferenceCategory(ctx).apply {
+                title = "About"
+            }
             screen.addPreference(aboutCat)
 
             aboutCat.addPreference(Preference(ctx).apply {
                 title        = "T-mA24 Keyboard"
-                summary      = "Version 1.0.0 — Built for Ethiopia 🇪🇹"
+                summary      = "Version 1.0.0 — Built for Ethiopia \uD83C\uDDEA\uD83C\uDDF9"
                 isSelectable = false
             })
 
