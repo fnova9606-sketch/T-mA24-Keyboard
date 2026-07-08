@@ -18,48 +18,72 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: 'gradle'
 
-      - name: Cache Gradle packages
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      # ── Critical: bootstrap the Gradle wrapper jar ──────────────────
-      # The gradle-wrapper.jar is a binary that cannot be stored in Spck.
-      # This step downloads it directly from the official Gradle repo.
       - name: Bootstrap Gradle wrapper jar
         run: |
           mkdir -p gradle/wrapper
           curl -fsSL \
-            "https://github.com/gradle/gradle/raw/v8.4.0/gradle/wrapper/gradle-wrapper.jar" \
-            -o gradle/wrapper/gradle-wrapper.jar
+            "https://services.gradle.org/distributions/gradle-8.4-bin.zip" \
+            -o /tmp/gradle-8.4-bin.zip
+          unzip -j /tmp/gradle-8.4-bin.zip \
+            "gradle-8.4/lib/gradle-wrapper-*.jar" \
+            -d gradle/wrapper/ 2>/dev/null || true
+          # Fallback: download wrapper jar directly from Maven Central
+          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
+            curl -fsSL \
+              "https://repo1.maven.org/maven2/org/gradle/gradle-wrapper/8.4/gradle-wrapper-8.4.jar" \
+              -o gradle/wrapper/gradle-wrapper.jar 2>/dev/null || true
+          fi
+          # Second fallback: use gradle-actions setup which provides its own wrapper
+          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
+            wget -q \
+              "https://raw.githubusercontent.com/gradle/gradle/v8.4.0/gradle/wrapper/gradle-wrapper.jar" \
+              -O gradle/wrapper/gradle-wrapper.jar
+          fi
+          echo "Wrapper jar size: $(du -sh gradle/wrapper/gradle-wrapper.jar)"
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-      - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@v2
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: wrapper
 
       - name: Build debug APK
-        run: ./gradlew assembleDebug --no-daemon --stacktrace
+        run: |
+          ./gradlew assembleDebug \
+            --no-daemon \
+            --stacktrace \
+            --info \
+            -Dkotlin.daemon.jvm.options="-Xmx2g -Xms512m" \
+            -Dorg.gradle.jvmargs="-Xmx2g -XX:MaxMetaspaceSize=512m -XX:+HeapDumpOnOutOfMemoryError" \
+            -Dorg.gradle.workers.max=2
         env:
-          # Suppress "daemon not usable" warnings in CI
           GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+          JAVA_TOOL_OPTIONS: "-Xmx2g"
 
       - name: Upload APK artifact
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: TMA24Keyboard-debug
           path: app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
 
-      # Optional: print APK size so you can see it in the Actions log
+      - name: Upload build reports on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-reports
+          path: |
+            app/build/reports/
+            app/build/outputs/logs/
+          retention-days: 7
+
       - name: Print APK info
+        if: success()
         run: |
           APK=app/build/outputs/apk/debug/app-debug.apk
           echo "APK size: $(du -sh $APK | cut -f1)"
