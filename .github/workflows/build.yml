@@ -62,13 +62,23 @@ jobs:
         env:
           GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
-      - name: Locate generated APK
+      - name: Locate and stage APK for upload
         if: success()
         run: |
-          echo "====== Searching for all APK files in workspace ======"
-          find . -name "*.apk" 2>/dev/null
-          echo "====== Full build outputs directory structure ======"
-          find . -path "*/build/outputs*" -type f 2>/dev/null || echo "No build outputs found"
+          echo "====== Searching entire workspace for APK files ======"
+          find "$GITHUB_WORKSPACE" -name "*.apk" -type f 2>/dev/null
+
+          echo "====== Staging APK to fixed output directory ======"
+          mkdir -p "$GITHUB_WORKSPACE/apk-output"
+
+          # Find every .apk anywhere in the workspace and copy to the
+          # fixed staging directory so upload-artifact has an exact path
+          find "$GITHUB_WORKSPACE" -name "*.apk" -type f \
+            ! -path "*/apk-output/*" \
+            -exec cp -v {} "$GITHUB_WORKSPACE/apk-output/" \;
+
+          echo "====== Contents of staging directory ======"
+          ls -lah "$GITHUB_WORKSPACE/apk-output/" || echo "Staging directory is empty"
 
       - name: Dump AAPT2 error details on failure
         if: failure()
@@ -121,11 +131,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: TMA24Keyboard-debug
-          # Global double-wildcard pattern searches the entire workspace
-          # tree for any .apk file, making it immune to any subfolder
-          # naming differences caused by namespace, applicationId,
-          # or build variant configuration.
-          path: '**/*.apk'
+          # Upload from the fixed staging directory that was populated
+          # by the shell find command in the previous step.
+          # This bypasses all glob evaluation issues in upload-artifact.
+          path: apk-output/
           if-no-files-found: error
           retention-days: 30
 
@@ -144,8 +153,10 @@ jobs:
       - name: Print APK info
         if: success()
         run: |
-          echo "====== APK files produced ======"
-          find . -name "*.apk" 2>/dev/null | while read apk; do
+          echo "====== APK files in staging directory ======"
+          ls -lah "$GITHUB_WORKSPACE/apk-output/" 2>/dev/null || echo "No APKs staged"
+          echo "====== All APK files in workspace ======"
+          find "$GITHUB_WORKSPACE" -name "*.apk" -type f 2>/dev/null | while read apk; do
             echo "Path : $apk"
             echo "Size : $(du -sh "$apk" | cut -f1)"
           done
