@@ -58,7 +58,6 @@ jobs:
             -Dkotlin.daemon.jvm.options="-Xmx2g -Xms512m" \
             -Dorg.gradle.jvmargs="-Xmx2g -XX:MaxMetaspaceSize=512m -XX:+HeapDumpOnOutOfMemoryError" \
             -Dorg.gradle.workers.max=2 \
-            -Pandroid.enableR8.fullMode=false \
             2>&1 | tee build_output.txt
         env:
           GRADLE_OPTS: "-Dorg.gradle.daemon=false"
