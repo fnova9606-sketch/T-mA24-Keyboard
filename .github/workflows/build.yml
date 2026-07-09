@@ -62,6 +62,14 @@ jobs:
         env:
           GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
+      - name: Locate generated APK
+        if: success()
+        run: |
+          echo "====== Searching for all APK files ======"
+          find . -name "*.apk" 2>/dev/null
+          echo "====== app/build/outputs/ structure ======"
+          find app/build/outputs/ -type f 2>/dev/null || echo "outputs directory not found"
+
       - name: Dump AAPT2 error details on failure
         if: failure()
         run: |
@@ -113,7 +121,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: TMA24Keyboard-debug
-          path: app/build/outputs/apk/debug/app-debug.apk
+          # Wildcard pattern catches the APK regardless of whether
+          # the build type folder is named 'debug' or something else,
+          # and regardless of whether applicationIdSuffix changed the
+          # output filename from app-debug.apk to something else.
+          path: app/build/outputs/apk/**/*.apk
+          if-no-files-found: error
           retention-days: 30
 
       - name: Upload build reports on failure
@@ -131,6 +144,8 @@ jobs:
       - name: Print APK info
         if: success()
         run: |
-          APK=app/build/outputs/apk/debug/app-debug.apk
-          echo "APK size: $(du -sh $APK | cut -f1)"
-          echo "APK path: $APK"
+          echo "====== APK files produced ======"
+          find app/build/outputs/apk -name "*.apk" 2>/dev/null | while read apk; do
+            echo "Path : $apk"
+            echo "Size : $(du -sh "$apk" | cut -f1)"
+          done
