@@ -57,9 +57,57 @@ jobs:
             --info \
             -Dkotlin.daemon.jvm.options="-Xmx2g -Xms512m" \
             -Dorg.gradle.jvmargs="-Xmx2g -XX:MaxMetaspaceSize=512m -XX:+HeapDumpOnOutOfMemoryError" \
-            -Dorg.gradle.workers.max=2
+            -Dorg.gradle.workers.max=2 \
+            -Pandroid.enableR8.fullMode=false \
+            2>&1 | tee build_output.txt
         env:
           GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+      - name: Dump AAPT2 error details on failure
+        if: failure()
+        run: |
+          echo "====== FULL BUILD OUTPUT (last 300 lines) ======"
+          tail -300 build_output.txt || true
+
+          echo "====== AAPT2 RAW ERROR FILES ======"
+          find app/build -name "*.log" 2>/dev/null | while read f; do
+            echo "--- $f ---"
+            cat "$f"
+          done
+
+          echo "====== processDebugResources DIAGNOSTIC FILES ======"
+          find app/build/intermediates/incremental -type f 2>/dev/null | while read f; do
+            echo "--- $f ---"
+            cat "$f"
+          done
+
+          echo "====== AAPT2 LINK ERROR FILES ======"
+          find app/build -name "aapt2*.txt" -o -name "aapt_rules*.txt" 2>/dev/null | while read f; do
+            echo "--- $f ---"
+            cat "$f"
+          done
+
+          echo "====== RESOURCE FILES PRESENT IN PROJECT ======"
+          echo "--- drawable/ ---"
+          ls app/src/main/res/drawable/ 2>/dev/null || echo "MISSING"
+          echo "--- drawable-night/ ---"
+          ls app/src/main/res/drawable-night/ 2>/dev/null || echo "MISSING"
+          echo "--- values/ ---"
+          ls app/src/main/res/values/ 2>/dev/null || echo "MISSING"
+          echo "--- mipmap-anydpi-v26/ ---"
+          ls app/src/main/res/mipmap-anydpi-v26/ 2>/dev/null || echo "MISSING"
+
+          echo "====== CONTENTS OF styles.xml ======"
+          cat app/src/main/res/values/styles.xml 2>/dev/null || echo "FILE NOT FOUND"
+
+          echo "====== CONTENTS OF colors.xml ======"
+          cat app/src/main/res/values/colors.xml 2>/dev/null || echo "FILE NOT FOUND"
+
+          echo "====== CONTENTS OF strings.xml ======"
+          cat app/src/main/res/values/strings.xml 2>/dev/null || echo "FILE NOT FOUND"
+
+          echo "====== CONTENTS OF AndroidManifest.xml ======"
+          cat app/src/main/AndroidManifest.xml 2>/dev/null || echo "FILE NOT FOUND"
 
       - name: Upload APK artifact
         if: success()
@@ -77,6 +125,8 @@ jobs:
           path: |
             app/build/reports/
             app/build/outputs/logs/
+            app/build/intermediates/incremental/
+            build_output.txt
           retention-days: 7
 
       - name: Print APK info
