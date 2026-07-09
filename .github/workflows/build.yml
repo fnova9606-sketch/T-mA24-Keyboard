@@ -62,48 +62,36 @@ jobs:
         env:
           GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
-      - name: Locate and stage APK for upload
+      - name: Show APK location after build
         if: success()
         run: |
-          echo "====== Searching entire workspace for APK files ======"
-          find "$GITHUB_WORKSPACE" -name "*.apk" -type f 2>/dev/null
-
-          echo "====== Staging APK to fixed output directory ======"
-          mkdir -p "$GITHUB_WORKSPACE/apk-output"
-
-          # Find every .apk anywhere in the workspace and copy to the
-          # fixed staging directory so upload-artifact has an exact path
-          find "$GITHUB_WORKSPACE" -name "*.apk" -type f \
-            ! -path "*/apk-output/*" \
-            -exec cp -v {} "$GITHUB_WORKSPACE/apk-output/" \;
-
-          echo "====== Contents of staging directory ======"
-          ls -lah "$GITHUB_WORKSPACE/apk-output/" || echo "Staging directory is empty"
+          echo "====== GITHUB_WORKSPACE is: $GITHUB_WORKSPACE ======"
+          echo "====== All APK files found anywhere in workspace ======"
+          find "$GITHUB_WORKSPACE" -type f -name "*.apk" 2>/dev/null || echo "NO APK FILES FOUND ANYWHERE"
+          echo "====== All files inside any build/outputs folder ======"
+          find "$GITHUB_WORKSPACE" -path "*/build/outputs*" -type f 2>/dev/null || echo "NO BUILD OUTPUT FILES FOUND"
+          echo "====== Top-level workspace contents ======"
+          ls -la "$GITHUB_WORKSPACE/"
+          echo "====== Contents of app/ directory ======"
+          ls -la "$GITHUB_WORKSPACE/app/" 2>/dev/null || echo "app/ directory not found"
+          echo "====== Contents of app/build/ if it exists ======"
+          ls -la "$GITHUB_WORKSPACE/app/build/" 2>/dev/null || echo "app/build/ directory not found"
 
       - name: Dump AAPT2 error details on failure
         if: failure()
         run: |
           echo "====== FULL BUILD OUTPUT (last 300 lines) ======"
           tail -300 build_output.txt || true
-
           echo "====== AAPT2 RAW ERROR FILES ======"
           find app/build -name "*.log" 2>/dev/null | while read f; do
             echo "--- $f ---"
             cat "$f"
           done
-
           echo "====== processDebugResources DIAGNOSTIC FILES ======"
           find app/build/intermediates/incremental -type f 2>/dev/null | while read f; do
             echo "--- $f ---"
             cat "$f"
           done
-
-          echo "====== AAPT2 LINK ERROR FILES ======"
-          find app/build -name "aapt2*.txt" -o -name "aapt_rules*.txt" 2>/dev/null | while read f; do
-            echo "--- $f ---"
-            cat "$f"
-          done
-
           echo "====== RESOURCE FILES PRESENT IN PROJECT ======"
           echo "--- drawable/ ---"
           ls app/src/main/res/drawable/ 2>/dev/null || echo "MISSING"
@@ -113,28 +101,38 @@ jobs:
           ls app/src/main/res/values/ 2>/dev/null || echo "MISSING"
           echo "--- mipmap-anydpi-v26/ ---"
           ls app/src/main/res/mipmap-anydpi-v26/ 2>/dev/null || echo "MISSING"
-
           echo "====== CONTENTS OF styles.xml ======"
           cat app/src/main/res/values/styles.xml 2>/dev/null || echo "FILE NOT FOUND"
-
           echo "====== CONTENTS OF colors.xml ======"
           cat app/src/main/res/values/colors.xml 2>/dev/null || echo "FILE NOT FOUND"
-
           echo "====== CONTENTS OF strings.xml ======"
           cat app/src/main/res/values/strings.xml 2>/dev/null || echo "FILE NOT FOUND"
-
           echo "====== CONTENTS OF AndroidManifest.xml ======"
           cat app/src/main/AndroidManifest.xml 2>/dev/null || echo "FILE NOT FOUND"
+
+      - name: Copy APK to fixed upload location
+        if: success()
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE/apk-staging"
+          APK_COUNT=$(find "$GITHUB_WORKSPACE" -type f -name "*.apk" ! -path "*/apk-staging/*" | wc -l)
+          echo "Total APK files found: $APK_COUNT"
+          if [ "$APK_COUNT" -eq 0 ]; then
+            echo "ERROR: No APK files were produced by the build."
+            exit 1
+          fi
+          find "$GITHUB_WORKSPACE" -type f -name "*.apk" ! -path "*/apk-staging/*" | while read apk; do
+            echo "Copying: $apk"
+            cp "$apk" "$GITHUB_WORKSPACE/apk-staging/"
+          done
+          echo "====== Final contents of apk-staging/ ======"
+          ls -lah "$GITHUB_WORKSPACE/apk-staging/"
 
       - name: Upload APK artifact
         if: success()
         uses: actions/upload-artifact@v4
         with:
           name: TMA24Keyboard-debug
-          # Upload from the fixed staging directory that was populated
-          # by the shell find command in the previous step.
-          # This bypasses all glob evaluation issues in upload-artifact.
-          path: apk-output/
+          path: apk-staging/
           if-no-files-found: error
           retention-days: 30
 
@@ -153,10 +151,5 @@ jobs:
       - name: Print APK info
         if: success()
         run: |
-          echo "====== APK files in staging directory ======"
-          ls -lah "$GITHUB_WORKSPACE/apk-output/" 2>/dev/null || echo "No APKs staged"
-          echo "====== All APK files in workspace ======"
-          find "$GITHUB_WORKSPACE" -name "*.apk" -type f 2>/dev/null | while read apk; do
-            echo "Path : $apk"
-            echo "Size : $(du -sh "$apk" | cut -f1)"
-          done
+          echo "====== Uploaded APK files ======"
+          ls -lah "$GITHUB_WORKSPACE/apk-staging/" 2>/dev/null || echo "apk-staging directory not found"
