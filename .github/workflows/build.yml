@@ -65,10 +65,10 @@ jobs:
       - name: Locate generated APK
         if: success()
         run: |
-          echo "====== Searching for all APK files ======"
+          echo "====== Searching for all APK files in workspace ======"
           find . -name "*.apk" 2>/dev/null
-          echo "====== app/build/outputs/ structure ======"
-          find app/build/outputs/ -type f 2>/dev/null || echo "outputs directory not found"
+          echo "====== Full build outputs directory structure ======"
+          find . -path "*/build/outputs*" -type f 2>/dev/null || echo "No build outputs found"
 
       - name: Dump AAPT2 error details on failure
         if: failure()
@@ -121,11 +121,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: TMA24Keyboard-debug
-          # Wildcard pattern catches the APK regardless of whether
-          # the build type folder is named 'debug' or something else,
-          # and regardless of whether applicationIdSuffix changed the
-          # output filename from app-debug.apk to something else.
-          path: app/build/outputs/apk/**/*.apk
+          # Global double-wildcard pattern searches the entire workspace
+          # tree for any .apk file, making it immune to any subfolder
+          # naming differences caused by namespace, applicationId,
+          # or build variant configuration.
+          path: '**/*.apk'
           if-no-files-found: error
           retention-days: 30
 
@@ -145,7 +145,7 @@ jobs:
         if: success()
         run: |
           echo "====== APK files produced ======"
-          find app/build/outputs/apk -name "*.apk" 2>/dev/null | while read apk; do
+          find . -name "*.apk" 2>/dev/null | while read apk; do
             echo "Path : $apk"
             echo "Size : $(du -sh "$apk" | cut -f1)"
           done
