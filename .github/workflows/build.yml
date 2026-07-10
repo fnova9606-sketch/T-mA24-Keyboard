@@ -23,21 +23,13 @@ jobs:
       - name: Bootstrap Gradle wrapper jar
         run: |
           mkdir -p gradle/wrapper
-          curl -fsSL \
-            "https://services.gradle.org/distributions/gradle-8.4-bin.zip" \
-            -o /tmp/gradle-8.4-bin.zip
-          unzip -j /tmp/gradle-8.4-bin.zip \
-            "gradle-8.4/lib/gradle-wrapper-*.jar" \
-            -d gradle/wrapper/ 2>/dev/null || true
+          curl -fsSL "https://services.gradle.org/distributions/gradle-8.4-bin.zip" -o /tmp/gradle-8.4-bin.zip
+          unzip -j /tmp/gradle-8.4-bin.zip "gradle-8.4/lib/gradle-wrapper-*.jar" -d gradle/wrapper/ 2>/dev/null || true
           if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
-            curl -fsSL \
-              "https://repo1.maven.org/maven2/org/gradle/gradle-wrapper/8.4/gradle-wrapper-8.4.jar" \
-              -o gradle/wrapper/gradle-wrapper.jar 2>/dev/null || true
+            curl -fsSL "https://repo1.maven.org/maven2/org/gradle/gradle-wrapper/8.4/gradle-wrapper-8.4.jar" -o gradle/wrapper/gradle-wrapper.jar 2>/dev/null || true
           fi
           if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
-            wget -q \
-              "https://raw.githubusercontent.com/gradle/gradle/v8.4.0/gradle/wrapper/gradle-wrapper.jar" \
-              -O gradle/wrapper/gradle-wrapper.jar
+            wget -q "https://raw.githubusercontent.com/gradle/gradle/v8.4.0/gradle/wrapper/gradle-wrapper.jar" -O gradle/wrapper/gradle-wrapper.jar
           fi
           echo "Wrapper jar size: $(du -sh gradle/wrapper/gradle-wrapper.jar)"
 
@@ -50,13 +42,7 @@ jobs:
           gradle-version: wrapper
 
       - name: Build debug APK
-        run: |
-          ./gradlew :app:assembleDebug \
-            --no-daemon \
-            --stacktrace \
-            '-Dkotlin.daemon.jvm.options=-Xmx2g -Xms512m' \
-            '-Dorg.gradle.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=512m -XX:+HeapDumpOnOutOfMemoryError' \
-            '-Dorg.gradle.workers.max=2'
+        run: ./gradlew :app:assembleDebug --no-daemon --stacktrace -Dkotlin.daemon.jvm.options="-Xmx2g -Xms512m" -Dorg.gradle.jvmargs="-Xmx2g -XX:MaxMetaspaceSize=512m -XX:+HeapDumpOnOutOfMemoryError" -Dorg.gradle.workers.max=2
         env:
           GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
@@ -65,8 +51,7 @@ jobs:
           echo "====== Searching for APK files ======"
           find "$GITHUB_WORKSPACE" -type f -name "*.apk" 2>/dev/null
           echo "====== app/build/outputs directory ======"
-          find "$GITHUB_WORKSPACE/app/build/outputs" -type f 2>/dev/null \
-            || echo "app/build/outputs not found"
+          find "$GITHUB_WORKSPACE/app/build/outputs" -type f 2>/dev/null || echo "app/build/outputs not found"
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
@@ -95,6 +80,5 @@ jobs:
             echo "APK size: $(du -sh "$APK" | cut -f1)"
           else
             echo "APK not found at expected path"
-            find "$GITHUB_WORKSPACE" -name "*.apk" 2>/dev/null \
-              || echo "No APK found anywhere"
+            find "$GITHUB_WORKSPACE" -name "*.apk" 2>/dev/null || echo "No APK found anywhere"
           fi
