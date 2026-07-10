@@ -50,13 +50,13 @@ jobs:
           gradle-version: wrapper
 
       - name: Build debug APK
-        run: >-
-          ./gradlew :app:assembleDebug
-          --no-daemon
-          --stacktrace
-          -Dkotlin.daemon.jvm.options="-Xmx2g -Xms512m"
-          -Dorg.gradle.jvmargs="-Xmx2g -XX:MaxMetaspaceSize=512m -XX:+HeapDumpOnOutOfMemoryError"
-          -Dorg.gradle.workers.max=2
+        run: |
+          ./gradlew :app:assembleDebug \
+            --no-daemon \
+            --stacktrace \
+            '-Dkotlin.daemon.jvm.options=-Xmx2g -Xms512m' \
+            '-Dorg.gradle.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=512m -XX:+HeapDumpOnOutOfMemoryError' \
+            '-Dorg.gradle.workers.max=2'
         env:
           GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
@@ -65,7 +65,8 @@ jobs:
           echo "====== Searching for APK files ======"
           find "$GITHUB_WORKSPACE" -type f -name "*.apk" 2>/dev/null
           echo "====== app/build/outputs directory ======"
-          find "$GITHUB_WORKSPACE/app/build/outputs" -type f 2>/dev/null || echo "app/build/outputs not found"
+          find "$GITHUB_WORKSPACE/app/build/outputs" -type f 2>/dev/null \
+            || echo "app/build/outputs not found"
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
@@ -94,5 +95,6 @@ jobs:
             echo "APK size: $(du -sh "$APK" | cut -f1)"
           else
             echo "APK not found at expected path"
-            find "$GITHUB_WORKSPACE" -name "*.apk" 2>/dev/null || echo "No APK found anywhere"
+            find "$GITHUB_WORKSPACE" -name "*.apk" 2>/dev/null \
+              || echo "No APK found anywhere"
           fi
