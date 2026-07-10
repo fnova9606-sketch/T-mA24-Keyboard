@@ -15,12 +15,6 @@
         <item name="android:windowBackground">@color/parchment</item>
         <item name="android:statusBarColor">@color/ledger_blue_dark</item>
         <item name="android:navigationBarColor">@color/ledger_blue_dark</item>
-        <!--
-            Bind the keyboardViewStyle theme attribute to our base KeyStyle.
-            Any view that reads attr/keyboardViewStyle from the theme will
-            receive @style/KeyStyle as its resolved style reference.
-        -->
-        <item name="keyboardViewStyle">@style/KeyStyle</item>
     </style>
 
     <style name="Theme.TMA24Keyboard.Settings" parent="Theme.TMA24Keyboard">
