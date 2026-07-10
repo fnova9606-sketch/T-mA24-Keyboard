@@ -2,13 +2,20 @@
 <resources>
 
     <!--
+        Top-level keyboard view style attribute.
+        Referenced by the system or by layout XML as attr/keyboardViewStyle.
+        Must be declared here as a standalone attr (not inside a
+        declare-styleable) so it is accessible as a theme attribute.
+    -->
+    <attr name="keyboardViewStyle" format="reference" />
+
+    <!--
         Custom attribute declarations for T-mA24 Keyboard.
         These must exist in attrs.xml before any style or layout
         can reference attr/keyBackground, attr/keyTextSize, etc.
         AAPT2 requires every custom attribute to be declared here
         before it can be used anywhere in the resource tree.
     -->
-
     <declare-styleable name="TMA24KeyboardView">
 
         <!-- Background drawable for each key -->
